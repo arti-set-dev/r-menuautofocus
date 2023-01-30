@@ -18,6 +18,7 @@ export default class MenuAutofocus {
     this.menu = document.querySelector(`[${this.options.menuName}]`);
     this.closeBtn = document.querySelector(`[${this.options.closeBtnName}]`);
     this.overlay = document.querySelector(`[${this.options.overlayName}]`);
+    this.menuItems = this.menu?.querySelectorAll(`[${this.options.menuItemName}]`);
 
     this.focusElems = [
       'a[href]',
@@ -62,7 +63,9 @@ export default class MenuAutofocus {
           }
           this.menuItems.forEach(menuItemEl => {
             if (e.target == menuItemEl) {
-              this.navitationOff();
+              if (getComputedStyle(this.burger).display != 'none') {
+                this.navitationOff();
+              }
             }
           })
         })
