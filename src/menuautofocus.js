@@ -44,10 +44,12 @@ export default class MenuAutofocus {
         });
 
         document.addEventListener('click', (e) => {
-          if (e.target == this.burger || e.target == this.closeBtn || e.target == this.overlay || e.target.closest(this.options.menuItemName)) {
+          if (e.target == this.burger || e.target == this.closeBtn || e.target == this.overlay) {
             if (this.menu.classList.contains(this.options.menuActiveClass)) {
               this.navitationOn();
               this.focusToMenu(e);
+
+              
             } else {
               if (getComputedStyle(this.burger).display != 'none') {
                 this.navitationOff();
@@ -58,6 +60,11 @@ export default class MenuAutofocus {
               }
             }
           }
+          this.menuItems.forEach(menuItemEl => {
+            if (e.target == menuItemEl) {
+              this.navitationOff();
+            }
+          })
         })
 
         document.addEventListener('keydown', (e) => {
